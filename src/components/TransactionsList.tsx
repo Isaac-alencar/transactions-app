@@ -1,18 +1,26 @@
-import styles from "../styles/components/TransactionsList.module.scss";
 import { Transaction } from "./TransactionItem";
+import type { Transaction as TransactionType } from "../shared/types";
 
-export const TransactionsList = () => {
+import styles from "../styles/components/TransactionsList.module.scss";
+
+type TransactionsListProps = {
+  transactions: TransactionType[];
+};
+
+export const TransactionsList = ({ transactions }: TransactionsListProps) => {
   return (
     <ul className={styles.Transactions}>
-      <Transaction />
-      <Transaction />
-      <Transaction />
-      <Transaction />
-      <Transaction />
-      <Transaction />
-      <Transaction />
-      <Transaction />
-      <Transaction />
+      {transactions.map((transaction) => {
+        return (
+          <Transaction
+            key={transaction.transaction_id}
+            amount={transaction.amount}
+            cardHolder={transaction.cardHolder}
+            cardNumber={transaction.cardNumber}
+            transaction_id={transaction.transaction_id}
+          />
+        );
+      })}
     </ul>
   );
 };

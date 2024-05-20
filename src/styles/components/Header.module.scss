@@ -1,0 +1,19 @@
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 65px;
+  max-height: 66px;
+  padding: var(--padding-sm) calc(var(--padding-sm) - 0.1rem);
+  border-bottom: 2px solid #615d5d27;
+  background-color: #fff;
+}
+
+.Link {
+  padding: calc(var(--padding-sm) - 0.5rem) var(--padding-sm);
+  color: #fff;
+  border: 0;
+  border-radius: var(--radius);
+  text-decoration: none;
+  background-color: var(--blue);
+}

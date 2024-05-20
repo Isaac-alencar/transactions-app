@@ -1,0 +1,20 @@
+.Footer {
+  p {
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.825rem;
+    font-weight: bold;
+  }
+  padding: 1rem;
+  background-color: #fff;
+}
+
+
+@media screen and (min-width: 1000px) {
+  .Footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+}

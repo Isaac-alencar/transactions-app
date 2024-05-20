@@ -1,0 +1,57 @@
+.Transaction {
+  padding: var(--margin-sm);
+  border-radius: var(--radius);
+  border: 2px solid #4e4d4d3a;
+  background-color: #fff;
+  cursor: pointer;
+
+  & + & {
+    margin-top: var(--margin-sm);
+  }
+
+  h3 {
+    font-weight: bold;
+    color: var(--black);
+  }
+
+  span {
+    color: #4e4d4d7a;
+    font-size: 0.825rem;
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 1.75rem;
+    color: var(--blue);
+  }
+}
+
+.CreditCardInfo {
+  display: flex;
+  flex-direction: column;
+  margin: var(--margin-sm) 0;
+
+  span:first-child {
+    font-size: 1rem;
+    color: var(--black);
+    font-weight: bold;
+  }
+
+  span {
+    margin-top: 0.4rem;
+    font-size: 0.975rem;
+    font-weight: 500;
+    color: var(--gray);
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .Transaction {
+    & + & {
+      margin-top: unset;
+    }
+
+    max-width: 416px;
+    max-height: 196px;
+  }
+}

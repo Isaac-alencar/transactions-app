@@ -1,30 +1,13 @@
-import type { Transaction } from "../shared/types";
-
-import { httpClient } from "../services/api/httpClient";
 import { AxiosError } from "axios";
 
-type ApiResponse = {
-  id: number;
-  transaction_id: string;
-  cc_owner_name: string;
-  cc_number: string;
-  cc_expiration_date: string;
-  cc_security_code: number;
-  amount: number;
-};
+import { httpClient } from "../services/api/httpClient";
 
-type ApiDataFormat = {
-  transaction: {
-    user_id: 1;
-    cc_owner_name: string;
-    cc_number: string;
-    cc_expiration_date: string;
-    cc_security_code: number;
-    amount: number;
-  };
-};
-
-type CreateTransactionDTO = Omit<Transaction, "transaction_id">;
+import type {
+  ApiDataFormat,
+  ApiResponse,
+  CreateTransactionDTO,
+  Transaction,
+} from "../shared/types";
 
 export const createTransaction = async (
   data: CreateTransactionDTO

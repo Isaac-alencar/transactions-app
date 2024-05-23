@@ -1,6 +1,7 @@
 import type { Transaction } from "../shared/types";
 
 import { httpClient } from "../services/api/httpClient";
+import { AxiosError } from "axios";
 
 type ApiResponse = {
   id: number;
@@ -14,6 +15,7 @@ type ApiResponse = {
 
 type ApiDataFormat = {
   transaction: {
+    user_id: 1;
     cc_owner_name: string;
     cc_number: string;
     cc_expiration_date: string;
@@ -35,8 +37,14 @@ export const createTransaction = async (
     const { data: newTransaction } = response;
 
     return mapResponseToAppFormat(newTransaction);
-  } catch (error: unknown) {
-    throw new Error((error as Error).message);
+  } catch (error) {
+    if ((error as AxiosError).code === "ERR_BAD_REQUEST") {
+      throw new Error("Check the all the information!");
+    }
+
+    throw new Error(
+      "Error while creating this transaction, please try it later!"
+    );
   }
 };
 
@@ -54,6 +62,7 @@ const mapResponseToAppFormat = (item: ApiResponse): Transaction => {
 const mapToApiFormat = (item: CreateTransactionDTO): ApiDataFormat => {
   return {
     transaction: {
+      user_id: 1,
       amount: item.amount,
       cc_owner_name: item.cardHolder,
       cc_security_code: Number(item.securityCode),

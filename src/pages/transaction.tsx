@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { createTransaction } from "../infrastructure/createTransaction";
 
@@ -41,11 +42,14 @@ export const NewTransaction = () => {
     try {
       const response = await createTransaction(transaction);
       if (response) {
-        alert("Transaction created with successfully!");
+        toast.success("Transaction created with successfully!", {
+          theme: "colored",
+        });
       }
     } catch (e) {
-      console.log((e as Error).message);
-      alert("It as not possible to create this transaction!");
+      toast.error((e as Error).message, {
+        theme: "colored",
+      });
     } finally {
       setIsLoading(false);
     }

@@ -25,6 +25,7 @@
   .Transactions {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    padding-bottom: calc(var(--padding-lg) + 1rem);
   }
 }
 

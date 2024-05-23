@@ -10,17 +10,21 @@ type TransactionsListProps = {
 export const TransactionsList = ({ transactions }: TransactionsListProps) => {
   return (
     <ul className={styles.Transactions}>
-      {transactions.map((transaction) => {
-        return (
-          <Transaction
-            key={transaction.transaction_id}
-            amount={transaction.amount}
-            cardHolder={transaction.cardHolder}
-            cardNumber={transaction.cardNumber}
-            transaction_id={transaction.transaction_id}
-          />
-        );
-      })}
+      {transactions.length > 0 ? (
+        transactions.map((transaction) => {
+          return (
+            <Transaction
+              key={transaction.transaction_id}
+              amount={transaction.amount}
+              cardHolder={transaction.cardHolder}
+              cardNumber={transaction.cardNumber}
+              transaction_id={transaction.transaction_id}
+            />
+          );
+        })
+      ) : (
+        <p>No transactions to show! :)</p>
+      )}
     </ul>
   );
 };

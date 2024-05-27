@@ -12,10 +12,10 @@ export const TransactionsList = ({ transactions }: TransactionsListProps) => {
     <ul className={styles.Transactions}>
       {transactions.length > 0 ? (
         transactions.map((transaction) => {
-          console.log(transaction);
           return (
             <TransactionItem
               key={transaction.transaction_id}
+              status={transaction.status}
               amount={transaction.amount}
               cardHolder={transaction.cardHolder}
               cardNumber={transaction.cardNumber}

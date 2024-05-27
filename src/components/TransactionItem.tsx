@@ -12,21 +12,29 @@ export const TransactionItem = ({
   amount,
   cardHolder,
   cardNumber,
-}: TransactionItemProps) => (
-  <li className={styles.Transaction}>
-    <h3>Transaction</h3>
-    <span>{transaction_id}</span>
+  status,
+}: TransactionItemProps) => {
+  const cxNames = {
+    pending: styles.Pending,
+    approved: styles.Approved,
+    denied: styles.Denied,
+  };
 
-    <div className={styles.CreditCardInfo}>
-      <span>{cardHolder}</span>
-      <span>{maskCardNumber(cardNumber)}</span>
-    </div>
+  return (
+    <li className={`${styles.Transaction}`}>
+      <h3>Transaction</h3>
+      <span>{transaction_id}</span>
 
-    <p>
-      {new Intl.NumberFormat("en-IN", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount)}
-    </p>
-  </li>
-);
+      <div className={styles.CreditCardInfo}>
+        <span>{cardHolder}</span>
+        <span>{maskCardNumber(cardNumber)}</span>
+      </div>
+      <p className={`${cxNames[status as keyof typeof cxNames]}`}>
+        {new Intl.NumberFormat("en-IN", {
+          style: "currency",
+          currency: "USD",
+        }).format(amount)}
+      </p>
+    </li>
+  );
+};

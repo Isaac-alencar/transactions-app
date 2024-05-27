@@ -26,6 +26,20 @@
   }
 }
 
+.Transaction {
+  .Pending {
+    color: #e78413;
+  }
+  
+  .Denied {
+    color: var(--red);
+  }
+  
+  .Approved {
+    color: var(--green);
+  }
+}
+
 .CreditCardInfo {
   display: flex;
   flex-direction: column;

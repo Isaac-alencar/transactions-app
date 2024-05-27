@@ -1,4 +1,4 @@
-import { Transaction } from "./TransactionItem";
+import { TransactionItem } from "./TransactionItem";
 import type { Transaction as TransactionType } from "../shared/types";
 
 import styles from "../styles/components/TransactionsList.module.scss";
@@ -12,8 +12,9 @@ export const TransactionsList = ({ transactions }: TransactionsListProps) => {
     <ul className={styles.Transactions}>
       {transactions.length > 0 ? (
         transactions.map((transaction) => {
+          console.log(transaction);
           return (
-            <Transaction
+            <TransactionItem
               key={transaction.transaction_id}
               amount={transaction.amount}
               cardHolder={transaction.cardHolder}

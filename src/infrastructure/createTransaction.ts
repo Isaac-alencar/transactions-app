@@ -34,10 +34,11 @@ export const createTransaction = async (
 const mapResponseToAppFormat = (item: ApiResponse): Transaction => {
   return {
     amount: item.amount,
-    cardHolder: item.cc_owner_name,
-    cardNumber: item.cc_number,
-    securityCode: String(item.cc_security_code),
-    expirationDate: item.cc_expiration_date,
+    status: item.status,
+    cardHolder: item.card_holder,
+    cardNumber: item.card_number,
+    securityCode: item.card_number,
+    expirationDate: item.card_expiration_date,
     transaction_id: item.transaction_id,
   };
 };
@@ -47,10 +48,10 @@ const mapToApiFormat = (item: CreateTransactionDTO): ApiDataFormat => {
     transaction: {
       user_id: 1,
       amount: item.amount,
-      cc_owner_name: item.cardHolder,
-      cc_security_code: Number(item.securityCode),
-      cc_expiration_date: item.expirationDate,
-      cc_number: item.cardNumber,
+      card_holder: item.cardHolder,
+      card_security_code: Number(item.securityCode),
+      card_expiration_date: item.expirationDate,
+      card_number: item.cardNumber,
     },
   };
 };

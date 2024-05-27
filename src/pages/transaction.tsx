@@ -2,6 +2,7 @@ import { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { CreateTransactionDTO } from "../shared/types";
 import { createTransaction } from "../infrastructure/createTransaction";
 
 import styles from "../styles/pages/transaction.module.scss";
@@ -14,19 +15,19 @@ const initialValue = {
   securityCode: "",
 };
 
-type Transaction = typeof initialValue;
-
 export const NewTransaction = () => {
-  const [transaction, setTransaction] = useState<Transaction>(initialValue);
+  const [transaction, setTransaction] =
+    useState<CreateTransactionDTO>(initialValue);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const isFormValid = Object.keys(transaction).some(
-    (key) => !transaction[key as keyof Transaction]
+    (key) => !transaction[key as keyof CreateTransactionDTO]
   );
 
-  const handleChange = <K extends keyof Transaction>(
+  const handleChange = <K extends keyof CreateTransactionDTO>(
     name: K,
-    value: Transaction[K]
+    value: CreateTransactionDTO[K]
   ) => {
     setTransaction((prevValue) => ({
       ...prevValue,

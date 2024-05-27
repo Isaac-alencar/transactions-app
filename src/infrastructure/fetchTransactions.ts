@@ -1,16 +1,6 @@
 import { httpClient } from "../services/api/httpClient";
 
-import type { Transaction } from "../shared/types";
-
-type ApiResponse = {
-  id: number;
-  transaction_id: string;
-  cc_owner_name: string;
-  cc_number: string;
-  cc_expiration_date: string;
-  cc_security_code: number;
-  amount: number;
-};
+import type { Transaction, ApiResponse } from "../shared/types";
 
 export const fetchTransactions = async (): Promise<Transaction[]> => {
   const response = await httpClient.get<ApiResponse[]>("/transactions");
@@ -22,10 +12,11 @@ export const fetchTransactions = async (): Promise<Transaction[]> => {
 const mapResponseToAppFormat = (item: ApiResponse): Transaction => {
   return {
     amount: item.amount,
-    cardHolder: item.cc_owner_name,
-    cardNumber: item.cc_number,
-    securityCode: String(item.cc_security_code),
-    expirationDate: item.cc_expiration_date,
+    cardHolder: item.card_holder,
+    cardNumber: item.card_number,
+    securityCode: String(item.card_security_code),
+    expirationDate: item.card_expiration_date,
+    status: item.status,
     transaction_id: item.transaction_id,
   };
 };

@@ -1,29 +1,31 @@
-import type { Transaction as TransactionType } from "../shared/types";
+import type { Transaction } from "../shared/types";
+import { maskCardNumber } from "../helpers/cardMask";
 import styles from "../styles/components/TransactionItem.module.scss";
 
-type TransactionCardProps = Omit<
-  TransactionType,
+type TransactionItemProps = Omit<
+  Transaction,
   "expirationDate" | "securityCode"
 >;
 
-export const Transaction = ({
+export const TransactionItem = ({
   transaction_id,
   amount,
   cardHolder,
   cardNumber,
-}: TransactionCardProps) => (
+}: TransactionItemProps) => (
   <li className={styles.Transaction}>
     <h3>Transaction</h3>
     <span>{transaction_id}</span>
 
     <div className={styles.CreditCardInfo}>
       <span>{cardHolder}</span>
-      <span>{cardNumber}</span>
+      <span>{maskCardNumber(cardNumber)}</span>
     </div>
 
     <p>
       {new Intl.NumberFormat("en-IN", {
-        maximumSignificantDigits: 4,
+        style: "currency",
+        currency: "USD",
       }).format(amount)}
     </p>
   </li>

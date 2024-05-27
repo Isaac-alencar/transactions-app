@@ -5,25 +5,27 @@ export type Transaction = {
   cardNumber: string;
   expirationDate: string;
   securityCode: string;
+  status: string;
 };
 
 export type ApiResponse = {
   id: number;
   transaction_id: string;
-  cc_owner_name: string;
-  cc_number: string;
-  cc_expiration_date: string;
-  cc_security_code: number;
+  card_holder: string;
+  card_number: string;
+  card_expiration_date: string;
+  card_security_code: number;
   amount: number;
+  status: string;
 };
 
 export type ApiDataFormat = {
   transaction: {
     user_id: 1;
-    cc_owner_name: string;
-    cc_number: string;
-    cc_expiration_date: string;
-    cc_security_code: number;
+    card_holder: string;
+    card_number: string;
+    card_expiration_date: string;
+    card_security_code: number;
     amount: number;
   };
 };

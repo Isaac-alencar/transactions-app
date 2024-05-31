@@ -20,6 +20,11 @@
   npm install # or yarn
 ```
 
+4. running the project
+```sh
+  npm run dev # or yarn dev
+```
+
 Then you can check the navigate to `http://localhost:5173/` to check the application running
 
 **You will need to have the backend app running in order to see the transactions and create a new one**
